@@ -48,11 +48,10 @@ public class IndexController {
 		return modelAndView;
 	}
 	
-	@PostMapping("insertP")
+	@PostMapping("insertPokemonFriend")
 	public ModelAndView pokemonInsert(Person personForm) {
-		log.debug("personInsert:" + this.person.toString());		
 		ModelAndView modelAndView = new ModelAndView("index");
-		System.out.println("agrego al ser");
+		System.out.println("agrego al ser aliado");
 		Pokemon pokemon =  new Pokemon();
 		//pokemon = personForm.getPokemon(); esto va que te cagas
 		pokemon.setName(personForm.getPokemon().getName());

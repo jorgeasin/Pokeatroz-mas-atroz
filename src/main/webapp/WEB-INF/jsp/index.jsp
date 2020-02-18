@@ -33,8 +33,22 @@
 	<br />
 	<br />
 	
-	<form:form action="insertP" method="post" modelAttribute="person">
-		<span>nuevo Pokemone:</span>
+	<form:form action="insertPokemonFriend" method="post" modelAttribute="person">
+		<span>nuevo Pokemone aliado:</span>
+		<span>nombre:</span>
+		<form:input type="text" path="pokemon.name" />
+		<span>vida:</span>
+		<form:input type="text" path="pokemon.hp" />
+		<span>ataque:</span>
+		<form:input type="text" path="pokemon.attack" />
+		<input type="submit" value="Añadir pokemon" />
+	</form:form>
+	<br />
+	<br />
+	<br />
+	
+	<form:form action="insertWildPokemon" method="post" modelAttribute="person">
+		<span>nuevo Pokemone salvaje</span>
 		<span>nombre:</span>
 		<form:input type="text" path="pokemon.name" />
 		<span>vida:</span>
