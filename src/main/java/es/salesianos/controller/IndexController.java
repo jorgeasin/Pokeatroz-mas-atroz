@@ -15,8 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 import es.salesianos.model.Item;
 
 import es.salesianos.model.Person;
+import es.salesianos.model.Pokeball;
 import es.salesianos.model.Ball;
 import es.salesianos.model.Pokemon;
+import es.salesianos.model.Superball;
+import es.salesianos.model.Ultraball;
 
 
 @Controller
@@ -32,6 +35,12 @@ public class IndexController {
 
 	@GetMapping("/")
 	public ModelAndView index() {
+		Superball sb = new Superball();
+		person.addBalls(sb);
+		Pokeball pb = new Pokeball();
+		person.addBalls(pb);
+		Ultraball ub = new Ultraball();
+		person.addBalls(ub);
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addObject("person", this.person);
 		modelAndView.addObject("rival", this.rival);
@@ -172,27 +181,24 @@ public class IndexController {
 	}
 	
 
-
-	
-
-
 	@GetMapping("PokemonFight")
 	public ModelAndView Fight() {
 		if (notDeath(person.getPokeActive())) {
 			
 			this.rival.getPokemon().setHp(getDamage(this.person.getPokeActive(),this.rival.getPokemon() ));
+			if (notDeath(rival.getPokemon()) && notDeath(person.getPokeActive())) {
+				this.person.getPokeActive().setHp(getDamage(this.rival.getPokemon(), this.person.getPokeActive() ));
+			}
+			else {
+				System.out.println("lo mataste wei");
+				rival.setPokemon(null);
+				ModelAndView modelAndView = new ModelAndView("index");
+				modelAndView.addObject("person", this.person);
+				modelAndView.addObject("rival", this.rival);
+				return modelAndView;
+			}
 		}
-		if (notDeath(rival.getPokemon())) {
-			this.person.getPokeActive().setHp(getDamage(this.rival.getPokemon(), this.person.getPokeActive() ));
-		}
-		else {
-			System.out.println("lo mataste wei");
-			rival.setPokemon(null);
-			ModelAndView modelAndView = new ModelAndView("index");
-			modelAndView.addObject("person", this.person);
-			modelAndView.addObject("rival", this.rival);
-			return modelAndView;
-		}
+		
 		
 		ModelAndView modelAndView = new ModelAndView("cave");
 		modelAndView.addObject("person", this.person);

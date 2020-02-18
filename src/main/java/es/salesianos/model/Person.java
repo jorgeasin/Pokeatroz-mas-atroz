@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class Person {
 	@Autowired
 	private Ball pokeball;
-	private String name;
+	private List <Ball> pokeballs= new ArrayList<Ball>(); 
 	
 	private Pokemon pokemon;
 	private Pokemon pokeActive;
@@ -28,14 +28,7 @@ public class Person {
 	public void addPokemonsCaptured(Pokemon pokemons) {
 		this.pokemonsCaptured.add(pokemons);
 	}
-	
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public List <Pokemon> getPokemons() {
 		return pokemons;
 	}
@@ -64,5 +57,14 @@ public class Person {
 	}
 	public void setPokeActive(Pokemon pokeActive) {
 		this.pokeActive = pokeActive;
+	}
+	public List <Ball> getPokeballs() {
+		return pokeballs;
+	}
+	public void setPokeballs(List <Ball> pokeballs) {
+		this.pokeballs = pokeballs;
+	}
+	public void addBalls(Ball ball) {
+		this.pokeballs.add(ball);
 	}
 }
