@@ -44,13 +44,12 @@
 			</tr>
 		</thead>
 		<tbody>
-				<c:forEach var="pokemons" items="${person.pokemons}">
 				<tr>
-					<td><c:out value="${pokemons.name}" /></td>
-					<td><c:out value="${pokemons.hp}" /></td>
-					<td><c:out value="${pokemons.attack}" /></td>
+					<td><c:out value="${person.pokeActive.name}" /></td>
+					<td><c:out value="${person.pokeActive.hp}" /></td>
+					<td><c:out value="${person.pokeActive.attack}" /></td>
 				</tr>
-			</c:forEach>
+		
 		</tbody>
 	</table>
 	<br />
@@ -75,6 +74,9 @@
 	</table>
 	<br />
 	<br />
+	<form:form action="switchPokemonCave" method="post">
+		<input type="submit" value="cambiar de esclavo" />
+	</form:form>
 	<br />
 	<div>
 		<a href="PokemonFight">Luchar</a>

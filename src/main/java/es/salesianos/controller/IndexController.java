@@ -97,7 +97,7 @@ public class IndexController {
 	}
 	
 	@PostMapping("switchPokemon")
-	public ModelAndView switchWeapon() {
+	public ModelAndView switchPokemon() {
 		
 		if (this.person.getPokemons().size()>1) {
 			Pokemon tmp;
@@ -110,6 +110,24 @@ public class IndexController {
 			System.out.println("pero tu eres tonto o que te pasa si solo tienes un pokemone a que coño vas a cambiar");
 		}
 		ModelAndView modelAndView = new ModelAndView("index");
+		modelAndView.addObject("person", this.person);
+		modelAndView.addObject("rival", rival);
+		return modelAndView;
+	}
+	@PostMapping("switchPokemonCave")
+	public ModelAndView switchPokemonCave() {
+		
+		if (this.person.getPokemons().size()>1) {
+			Pokemon tmp;
+			tmp = this.person.getPokemons().get(0);
+			this.person.getPokemons().remove(0);
+			this.person.getPokemons().add(tmp);
+			person.setPokeActive(person.getPokemons().get(0));
+		}
+		else {
+			System.out.println("pero tu eres tonto o que te pasa si solo tienes un pokemone a que coño vas a cambiar");
+		}
+		ModelAndView modelAndView = new ModelAndView("cave");
 		modelAndView.addObject("person", this.person);
 		modelAndView.addObject("rival", rival);
 		return modelAndView;
@@ -136,9 +154,9 @@ public class IndexController {
 	public ModelAndView KidnapPoorPokemon(Person personForm) {
 		ModelAndView modelAndView;
 		
-		if (lifeCounter() && kidnaped()) {
+		if (notDeath(person.getPokeActive()) && lifeCounter() && kidnaped()) {
 			this.person.addPokemonsCaptured(rival.getPokemon());
-			System.out.println(person.getPokeball().getName());
+			
 			System.out.println("secuestro completo");
 			rival.setPokemon(null);
 			modelAndView = new ModelAndView("index");
@@ -147,19 +165,35 @@ public class IndexController {
 			return modelAndView;
 			
 		}
-		/*else {
-			
-			
-		}
-		*/
 		modelAndView = new ModelAndView("cave");
 		modelAndView.addObject("person", this.person);
 		modelAndView.addObject("rival", this.rival);
 		return modelAndView;
 	}
+	
+
+
+	
+
+
 	@GetMapping("PokemonFight")
 	public ModelAndView Fight() {
-		System.out.println("luchar");
+		if (notDeath(person.getPokeActive())) {
+			
+			this.rival.getPokemon().setHp(getDamage(this.person.getPokeActive(),this.rival.getPokemon() ));
+		}
+		if (notDeath(rival.getPokemon())) {
+			this.person.getPokeActive().setHp(getDamage(this.rival.getPokemon(), this.person.getPokeActive() ));
+		}
+		else {
+			System.out.println("lo mataste wei");
+			rival.setPokemon(null);
+			ModelAndView modelAndView = new ModelAndView("index");
+			modelAndView.addObject("person", this.person);
+			modelAndView.addObject("rival", this.rival);
+			return modelAndView;
+		}
+		
 		ModelAndView modelAndView = new ModelAndView("cave");
 		modelAndView.addObject("person", this.person);
 		modelAndView.addObject("rival", this.rival);
@@ -167,9 +201,20 @@ public class IndexController {
 	}
 
 
+	private int getDamage(Pokemon poke1, Pokemon poke2) {
+		double damage;
+		
+		damage = poke2.getHp() - poke1.getAttack() * Math.random();
+		int damageRounded = (int) Math.round(damage);
+		
+		
+		return damageRounded;
+	}
+
+
 	private boolean lifeCounter() {
-		System.out.println(Integer.parseInt(rival.getPokemon().getHp() ) *100/ Integer.parseInt(rival.getPokemon().getMaxHp()));
-		if (Integer.parseInt(rival.getPokemon().getHp() ) *100/ Integer.parseInt(rival.getPokemon().getMaxHp())<25)
+		System.out.println(rival.getPokemon().getHp()  *100/ rival.getPokemon().getMaxHp());
+		if (rival.getPokemon().getHp()  *100/ rival.getPokemon().getMaxHp()<25)
 			return true;
 		else
 			return false;
@@ -186,10 +231,16 @@ public class IndexController {
 		else
 			return false;
 	}
-
-
-
 	
+	private boolean notDeath(Pokemon poke) {
+		if (poke.getHp()>0)
+			return true;
+		else
+			return false;
+		
+	}
+
+
 	private Pokemon AgregarPokemon(Pokemon personForm) {
 		Pokemon pokemon =  new Pokemon();
 		//pokemon = personForm.getPokemon(); esto va que te cagas

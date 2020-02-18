@@ -2,9 +2,9 @@ package es.salesianos.model;
 
 public class Pokemon {
 	private String name;
-	private String hp;
-	private String attack;
-	private String maxHp;
+	private int hp;
+	private int attack;
+	private int maxHp;
 
 
 	public String getName() {
@@ -15,29 +15,31 @@ public class Pokemon {
 		this.name = name;
 	}
 
-	public String getHp() {
+	public int getHp() {
 		return hp;
 	}
 
-	public void setHp(String hp) {
+	public void setHp(int hp) {
 		this.hp = hp;
 	}
 
-	public String getAttack() {
+	public int getAttack() {
 		return attack;
 	}
 
-	public void setAttack(String attack) {
+	public void setAttack(int attack) {
 		this.attack = attack;
 	}
 
-	public String getMaxHp() {
+	public int getMaxHp() {
 		return maxHp;
 	}
 
-	public void setMaxHp(String maxHp) {
+	public void setMaxHp(int maxHp) {
 		this.maxHp = maxHp;
 	}
+
+	
 
 	
 }
