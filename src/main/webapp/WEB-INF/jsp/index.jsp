@@ -13,17 +13,6 @@
 </head>
 <body>
 
-	<form:form action="insert" method="post" modelAttribute="person">
-		<span>Elige tu nombre:</span>
-		<form:input type="text" path="name" />
-		<input type="submit" value="Guardar nombre estudiante" />
-	</form:form>
-	<br />
-	<br /> El nombre el entrenador es
-	<span><c:out value="${person.name}" /></span>
-	<br />
-	<br />
-	<br />
 
 
 	<form:form action="insert" method="post" modelAttribute="person">
@@ -32,6 +21,7 @@
 	<br />
 	<br />
 	<br />
+	
 	
 	<form:form action="insertPokemonFriend" method="post" modelAttribute="person">
 		<span>nuevo Pokemone aliado:</span>
@@ -60,26 +50,11 @@
 	<br />
 	<br />
 	<br />
-	<table border="1">
-		<thead>
-			<tr>
-				<td>Pokeball</td>
-				<td>Numero</td>
-			</tr>
-		</thead>
-		<tbody>
-				<tr>
-					<td><c:out value="${person.pokeball.name}" /></td>
-					<td><c:out value="${person.pokeball.number}" /></td>
-					
-				</tr>	
-		</tbody>
-	</table>
-	<br />
-	<br />
-	<br />
 	<br /> El pokemon activo es
-	<span><c:out value="${person.pokemon[0].name}" /></span>
+	<span><c:out value="${person.pokeActive.name}" /></span>.
+	<br />
+	<br />
+	<br />
 	<table border="1">
 		<thead>
 			<tr>
@@ -98,12 +73,41 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	
-
-
+	<br />
+	<br />
+	<br />
+	<span><c:out value="Pokemones Capturados" /></span>
+	<table border="1">
+		<thead>
+			<tr>
+				<td>pokemon</td>
+				<td>hp</td>
+				<td>ataque</td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="pokemonsCaptured" items="${person.pokemonsCaptured}">
+				<tr>
+					<td><c:out value="${pokemonsCaptured.name}" /></td>
+					<td><c:out value="${pokemonsCaptured.hp}" /></td>
+					<td><c:out value="${pokemonsCaptured.attack}" /></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<br />
+	<br />
+	<br />
 	<form:form action="switchPokemon" method="post">
 		<input type="submit" value="cambiar de esclavo" />
 	</form:form>
+	<br />
+	<br />
+	<br />
+	<br /> El pokemon salvaje es
+	<span><c:out value="${rival.pokemon.name}" /></span>
+	 tiene <span><c:out value="${rival.pokemon.hp}" /></span> de vida y
+	 <span><c:out value="${rival.pokemon.attack}" /></span> de ataque.
 
 <div>
 		<a href="searchPokemon">Entrar en cueva</a>

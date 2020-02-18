@@ -34,6 +34,7 @@
 	<br />
 	<br />
 	<br />
+	<span><c:out value="Pokemon Aliado" /></span>
 	<table border="1">
 		<thead>
 			<tr>
@@ -52,7 +53,10 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	
+	<br />
+	<br />
+	<br />
+	<span><c:out value="Pokemon Salvaje" /></span>
 	<table border="1" align="left">
 		<thead>
 			<tr>
@@ -69,5 +73,12 @@
 				</tr>
 		</tbody>
 	</table>
+	<br />
+	<br />
+	<br />
+	<div>
+		<a href="PokemonFight">Luchar</a>
+	
+</div>
 </body>
 </html>

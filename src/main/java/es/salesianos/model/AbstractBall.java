@@ -3,7 +3,7 @@ package es.salesianos.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractPokeball implements Pokeball {
+public abstract class AbstractBall implements Ball {
 	
 	private int number;
 	private String name;

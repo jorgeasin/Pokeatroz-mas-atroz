@@ -5,9 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Profile("nivel2")
-public class Superball  extends AbstractPokeball{
+public class Superball  extends AbstractBall{
 	public Superball() {
-		setRate(50);
+		setRate(25);
+		setName("Superball");
 	}
 
 }

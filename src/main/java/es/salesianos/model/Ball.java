@@ -2,7 +2,7 @@ package es.salesianos.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-public interface PokeballMAla {
+public interface Ball {
 
 	public int getNumber();
 
@@ -14,5 +14,5 @@ public interface PokeballMAla {
 
 	public int getRate();
 
-
+	
 }

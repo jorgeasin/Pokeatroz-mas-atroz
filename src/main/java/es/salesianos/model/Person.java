@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Person {
 	@Autowired
-	private Pokeball pokeball;
+	private Ball pokeball;
 	private String name;
 	
 	private Pokemon pokemon;
@@ -53,10 +53,10 @@ public class Person {
 		this.pokemon = pokemon;
 	}
 	
-	public Pokeball getPokeball() {
+	public Ball getPokeball() {
 		return pokeball;
 	}
-	public void setPokeball(Pokeball pokeball) {
+	public void setPokeball(Ball pokeball) {
 		this.pokeball = pokeball;
 	}
 	public Pokemon getPokeActive() {
