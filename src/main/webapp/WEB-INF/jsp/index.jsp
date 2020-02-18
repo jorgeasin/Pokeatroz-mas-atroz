@@ -14,7 +14,7 @@
 <body>
 
 	<form:form action="insert" method="post" modelAttribute="person">
-		<span>Elige Pokemone inicial:</span>
+		<span>Elige tu nombre:</span>
 		<form:input type="text" path="name" />
 		<input type="submit" value="Guardar nombre estudiante" />
 	</form:form>
@@ -47,7 +47,7 @@
 	<br />
 	<br />
 	
-	<form:form action="insertWildPokemon" method="post" modelAttribute="person">
+	<form:form action="insertWildPokemon" method="post" modelAttribute="rival">
 		<span>nuevo Pokemone salvaje</span>
 		<span>nombre:</span>
 		<form:input type="text" path="pokemon.name" />
@@ -78,6 +78,8 @@
 	<br />
 	<br />
 	<br />
+	<br /> El pokemon activo es
+	<span><c:out value="${person.pokemon[0].name}" /></span>
 	<table border="1">
 		<thead>
 			<tr>

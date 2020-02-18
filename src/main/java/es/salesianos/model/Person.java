@@ -11,16 +11,25 @@ public class Person {
 	@Autowired
 	private Pokeball pokeball;
 	private String name;
-	private Item item;
-	private Pokemon pokemon;
-	private List <Pokemon> pokemons= new ArrayList<Pokemon>(); 
 	
-	public Item getItem() {
-		return item;
+	private Pokemon pokemon;
+	private Pokemon pokeActive;
+	
+	private List <Pokemon> pokemons= new ArrayList<Pokemon>(); 
+	private List <Pokemon> pokemonsCaptured= new ArrayList<Pokemon>(); 
+	
+
+	public List<Pokemon> getPokemonsCaptured() {
+		return pokemonsCaptured;
 	}
-	public void setItem(Item item) {
-		this.item = item;
+	public void setPokemonsCaptured(List<Pokemon> pokemonsCaptured) {
+		this.pokemonsCaptured = pokemonsCaptured;
 	}
+	public void addPokemonsCaptured(Pokemon pokemons) {
+		this.pokemonsCaptured.add(pokemons);
+	}
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -49,5 +58,11 @@ public class Person {
 	}
 	public void setPokeball(Pokeball pokeball) {
 		this.pokeball = pokeball;
+	}
+	public Pokemon getPokeActive() {
+		return pokeActive;
+	}
+	public void setPokeActive(Pokemon pokeActive) {
+		this.pokeActive = pokeActive;
 	}
 }

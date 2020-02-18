@@ -34,6 +34,8 @@ public class IndexController {
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addObject("person", this.person);
+		modelAndView.addObject("rival", this.rival);
+
 		return modelAndView;
 	}
 
@@ -49,17 +51,29 @@ public class IndexController {
 	}
 	
 	@PostMapping("insertPokemonFriend")
-	public ModelAndView pokemonInsert(Person personForm) {
+	public ModelAndView pokemonFirendInsert(Person personForm) {
 		ModelAndView modelAndView = new ModelAndView("index");
 		System.out.println("agrego al ser aliado");
-		Pokemon pokemon =  new Pokemon();
-		//pokemon = personForm.getPokemon(); esto va que te cagas
-		pokemon.setName(personForm.getPokemon().getName());
-		pokemon.setHp(personForm.getPokemon().getHp());
-		pokemon.setMaxHp(personForm.getPokemon().getHp());
-		pokemon.setAttack(personForm.getPokemon().getAttack());
-		person.addPokemons(pokemon);
+		if (person.getPokemons().size()<6) {
+			person.addPokemons(AgregarPokemon(personForm.getPokemon()));
+			if (person.getPokemons().size() == 1) {
+				person.setPokeActive(personForm.getPokemon());
+			}
+		}else
+			System.out.println("Tu equipo esta lleno boca chancla");
 		modelAndView.addObject("person", person);
+		return modelAndView;
+	}
+
+
+	
+	
+	@PostMapping("insertWildPokemon")
+	public ModelAndView pokemonWildInsert(Person personForm) {
+		ModelAndView modelAndView = new ModelAndView("index");
+		System.out.println("agrego al ser aliado");
+		rival.setPokemon(AgregarPokemon(personForm.getPokemon()));
+		modelAndView.addObject("rival", rival);
 		return modelAndView;
 	}
 	
@@ -157,5 +171,16 @@ public class IndexController {
 		pokemonWild.setHp("500");
 		return pokemonWild;
 		
+	}
+	
+	private Pokemon AgregarPokemon(Pokemon personForm) {
+		Pokemon pokemon =  new Pokemon();
+		//pokemon = personForm.getPokemon(); esto va que te cagas
+		pokemon.setName(personForm.getName());
+		pokemon.setHp(personForm.getHp());
+		pokemon.setMaxHp(personForm.getHp());
+		pokemon.setAttack(personForm.getAttack());
+		
+		return pokemon;
 	}
 }
