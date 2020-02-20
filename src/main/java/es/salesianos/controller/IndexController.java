@@ -35,12 +35,8 @@ public class IndexController {
 
 	@GetMapping("/")
 	public ModelAndView index() {
-		Superball sb = new Superball();
-		person.addBalls(sb);
-		Pokeball pb = new Pokeball();
-		person.addBalls(pb);
-		Ultraball ub = new Ultraball();
-		person.addBalls(ub);
+		
+		
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addObject("person", this.person);
 		modelAndView.addObject("rival", this.rival);
@@ -162,7 +158,6 @@ public class IndexController {
 	@PostMapping("kidnap")
 	public ModelAndView KidnapPoorPokemon(Person personForm) {
 		ModelAndView modelAndView;
-		
 		if (notDeath(person.getPokeActive()) && lifeCounter() && kidnaped()) {
 			this.person.addPokemonsCaptured(rival.getPokemon());
 			

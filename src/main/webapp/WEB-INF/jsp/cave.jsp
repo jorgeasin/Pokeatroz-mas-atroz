@@ -15,19 +15,20 @@
 		<thead>
 			<tr>
 				<td>Pokeball</td>
+				<td>Ratio</td>
 				<td>Accion</td>
 			</tr>
 		</thead>
 		<tbody>
 		
 				<tr>
-					<td><c:out value="${person.pokeball.name}" /></td>
-					
+					<td><c:out value="${pokeball.name}" /></td>
+					<td><c:out value="${pokeball.rate}" /></td>
 					
 					<td><input type="submit" value="Secuestrar " /></td>
 				</tr>
 			
-				
+	
 		</tbody>
 	</table>
 </form:form>
